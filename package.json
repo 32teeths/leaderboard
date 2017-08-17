@@ -13,12 +13,9 @@
     "author": "32teeths",
     "license": "ISC",
     "dependencies": {
-        // "@slack/client": "^3.8.1",
-        // "botkit": "^0.4.9",
-        // "cron": "^1.2.1",
+        "body-parser": "^1.17.2",
         "firebase": "^3.6.9",
         "moment": "^2.17.1"
-        // "node-schedule": "^1.2.0"
     },
     "engines": {
         "node": "7.5.0",
