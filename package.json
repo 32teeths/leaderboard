@@ -13,9 +13,9 @@
     "author": "32teeths",
     "license": "ISC",
     "dependencies": {
-        "body-parser": "^1.17.2",
-        "firebase": "^3.6.9",
-        "moment": "^2.17.1"
+        "body-parser": "1.17.2",
+        "firebase": "3.6.9",
+        "moment": "2.17.1"
     },
     "engines": {
         "node": "7.5.0",
