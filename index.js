@@ -14,6 +14,7 @@ var moment = require('moment');
 var count;
 
 // Initialize Firebase
+console.log(process.env.firebaseConfig);
 firebase.initializeApp(JSON.parse(process.env.firebaseConfig));
 
 // Endpoint to enable OAuth access for the app
