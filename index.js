@@ -51,7 +51,7 @@ app.get('/check', (req, res) => {
 
     // newEntry.set({ time: moment().format(), commit: reqBody });
 
-    res.status(200).end() // respond with 200
+    // res.status(200).end() // respond with 200
 
     res.send('Success');
 });
