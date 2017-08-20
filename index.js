@@ -15,7 +15,14 @@ var count;
 
 // Initialize Firebase
 console.log(process.env.firebaseConfig);
-firebase.initializeApp(JSON.parse(process.env.firebaseConfig));
+firebase.initializeApp({
+    apiKey: "AIzaSyAU8gYp1RUfBGAmWVxeT-X12zFHeh94V3I",
+    authDomain: "leaderboard-d9cc9.firebaseapp.com",
+    databaseURL: "https://leaderboard-d9cc9.firebaseio.com",
+    projectId: "leaderboard-d9cc9",
+    storageBucket: "leaderboard-d9cc9.appspot.com",
+    messagingSenderId: "1075282733939"
+});
 
 // Endpoint to enable OAuth access for the app
 // app.get('/OAuth', (req, res) => {
@@ -57,19 +64,19 @@ app.get('/check', (req, res) => {
 });
 
 
-app.post('/commits', (req, res) => {
+app.post('/commits', urlencodedParser, (req, res) => {
 
-    // var reqBody = JSON.parse(req.body.payload);
+    var reqBody = JSON.parse(req.body.payload);
 
-    // var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
+    var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
 
-    // var newEntry = firebase.database().ref(base_url + '/commits').push();
+    var newEntry = firebase.database().ref(base_url + '/commits').push();
 
-    // newEntry.set({ time: moment().format(), commit: reqBody });
+    newEntry.set({ time: moment().format(), commit: reqBody });
 
-    // res.status(200).end() // respond with 200
+    res.status(200) // respond with 200
 
-    res.send('Success');
+    res.send('Done');
 });
 
 // any actions on interactive buttons hit this url
