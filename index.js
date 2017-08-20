@@ -59,15 +59,15 @@ app.get('/check', (req, res) => {
 
 app.post('/commits', urlencodedParser, (req, res) => {
 
-    console.log(req.body);
+    // console.log(req.body);
 
-    var reqBody = JSON.parse(req.body.payload);
+    // var reqBody = JSON.parse(req.body.payload);
 
     var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
 
     var newEntry = firebase.database().ref(base_url + '/commits').push();
 
-    newEntry.set({ time: moment().format(), commit: reqBody });
+    newEntry.set({ time: moment().format(), req: req, body: req.body });
 
     res.status(200) // respond with 200
 
