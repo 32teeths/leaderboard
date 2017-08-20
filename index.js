@@ -63,9 +63,9 @@ app.post('/commits', urlencodedParser, (req, res) => {
 
     // var reqBody = JSON.parse(req.body.payload);
 
-    var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
+    // var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
 
-    var newEntry = firebase.database().ref(base_url + '/commits').push();
+    var newEntry = firebase.database().ref('/commits').push();
 
     console.log(req);
 
