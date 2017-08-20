@@ -67,7 +67,7 @@ app.post('/commits', urlencodedParser, (req, res) => {
 
     var newEntry = firebase.database().ref(base_url + '/commits').push();
 
-    newEntry.set({ time: moment().format(), req: req, body: req.body });
+    newEntry.set({ time: moment().format(), req: req || 'empty', body: req.body || 'empty' });
 
     res.status(200) // respond with 200
 
