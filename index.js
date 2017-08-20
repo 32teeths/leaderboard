@@ -59,17 +59,17 @@ app.get('/check', (req, res) => {
 
 app.post('/commits', (req, res) => {
 
-    var reqBody = JSON.parse(req.body.payload);
+    // var reqBody = JSON.parse(req.body.payload);
 
-    var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
+    // var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
 
-    var newEntry = firebase.database().ref(base_url + '/commits').push();
+    // var newEntry = firebase.database().ref(base_url + '/commits').push();
 
-    newEntry.set({ time: moment().format(), commit: reqBody });
+    // newEntry.set({ time: moment().format(), commit: reqBody });
 
-    res.status(200).end() // respond with 200
+    // res.status(200).end() // respond with 200
 
-    // res.send('Success');
+    res.send('Success');
 });
 
 // any actions on interactive buttons hit this url
