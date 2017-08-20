@@ -15,14 +15,7 @@ var count;
 
 // Initialize Firebase
 console.log(process.env.firebaseConfig);
-firebase.initializeApp({
-    apiKey: "AIzaSyAU8gYp1RUfBGAmWVxeT-X12zFHeh94V3I",
-    authDomain: "leaderboard-d9cc9.firebaseapp.com",
-    databaseURL: "https://leaderboard-d9cc9.firebaseio.com",
-    projectId: "leaderboard-d9cc9",
-    storageBucket: "leaderboard-d9cc9.appspot.com",
-    messagingSenderId: "1075282733939"
-});
+firebase.initializeApp(JSON.parse(process.env.firebaseConfig));
 
 // Endpoint to enable OAuth access for the app
 // app.get('/OAuth', (req, res) => {
@@ -65,6 +58,8 @@ app.get('/check', (req, res) => {
 
 
 app.post('/commits', urlencodedParser, (req, res) => {
+
+    console.log(req.body);
 
     var reqBody = JSON.parse(req.body.payload);
 
