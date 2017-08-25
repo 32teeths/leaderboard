@@ -62,8 +62,11 @@ app.get('/check', (req, res) => {
 app.post('/commits', urlencodedParser, (req, res) => {
 
 
+    console.log(req.param('repo:push'))
 
-    var reqBody = JSON.parse(req.body);
+
+
+    // var reqBody = JSON.parse(req.body);
 
     var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
 
@@ -71,13 +74,12 @@ app.post('/commits', urlencodedParser, (req, res) => {
 
     console.log("=======");
 
-    console.log(req.body);
+    console.log(req);
 
     console.log("---payload");
 
-    console.log(req.body.payload);
 
-    newEntry.set({ time: moment('YYYY-MM-DD hh:mm').format(), body: reqBody });
+    newEntry.set({ time: moment('YYYY-MM-DD hh:mm').format(), body: req });
 
     res.status(200) // respond with 200
 
