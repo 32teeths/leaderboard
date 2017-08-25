@@ -59,7 +59,7 @@ app.get('/check', (req, res) => {
 });
 
 
-app.post('/commits', urlencodedParser, (req, res) => {
+app.post('/commits', (req, res) => {
 
 
     console.log(req.param('repo:push'))
