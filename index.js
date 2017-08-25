@@ -61,27 +61,13 @@ app.get('/check', (req, res) => {
 
 app.post('/commits', (req, res) => {
 
-    console.log("====repo:push-----");
-
-    var param = req.param('repo:push');
-
-    console.log("====repo:push ends-----");
-
     var body = req.body;
-
-    console.log("====repo:body====");
-
-    console.log(body);
 
     var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
 
     var newEntry = firebase.database().ref('/commits').push();
 
-
-    console.log("---body ends");
-
-
-    newEntry.set({ time: moment('YYYY-MM-DD hh:mm').format(), body: body });
+    newEntry.set({ time: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'), body: body });
 
     res.status(200) // respond with 200
 
