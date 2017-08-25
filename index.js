@@ -13,6 +13,8 @@ var firebase = require("firebase");
 var moment = require('moment');
 var count;
 
+app.use(bodyParser.json());
+
 // Initialize Firebase
 console.log(process.env.firebaseConfig);
 firebase.initializeApp(JSON.parse(process.env.firebaseConfig));
@@ -59,15 +61,13 @@ app.get('/check', (req, res) => {
 
 app.post('/commits', urlencodedParser, (req, res) => {
 
-    // console.log(req.body);
 
-    var reqBody = JSON.parse(req.body.payload);
+
+    var reqBody = JSON.parse(req.body);
 
     var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
 
     var newEntry = firebase.database().ref('/commits').push();
-
-    console.log(req.body);
 
     console.log("=======");
 
@@ -77,7 +77,7 @@ app.post('/commits', urlencodedParser, (req, res) => {
 
     console.log(req.body.payload);
 
-    newEntry.set({ time: moment().format(), body: reqBody });
+    newEntry.set({ time: moment('YYYY-MM-DD hh:mm').format(), body: reqBody });
 
     res.status(200) // respond with 200
 
