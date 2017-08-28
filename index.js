@@ -72,11 +72,11 @@ app.post('/commits', (req, res) => {
             time: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
             body: commitObject
         }).then(function (result) {
-            var increment = firebase.database().ref('/developers').child(body.actor.username)
+            var increment = firebase.database().ref('/developers').child(commitObject.actor.username)
             // find the developers commit count and increment it
-            firebase.database().ref('/developers').child(body.actor.username).once('value').then(function (snapshot) {
+            firebase.database().ref('/developers').child(commitObject.actor.username).once('value').then(function (snapshot) {
                 var count = snapshot.val() || 0;
-                firebase.database().ref('/developers').child(body.actor.username).update(count++);
+                firebase.database().ref('/developers').child(commitObject.actor.username).update(count++);
             });
         });
 
