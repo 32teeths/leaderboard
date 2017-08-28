@@ -61,13 +61,25 @@ app.get('/check', (req, res) => {
 
 app.post('/commits', (req, res) => {
 
-    var body = req.body;
+    var commitObject = req.body;
 
-    var base_url = 'month/' + moment().format('YYYY-MM') + '/day/' + moment().format('YYYY-MM-DD');
+    var base_url = 'year/' + moment().format('YYYY') + '/' + moment().format('MM') + '/' + moment().format('YYYY-MM-DD');
 
-    var newEntry = firebase.database().ref('/commits').push();
+    var newEntry = firebase.database().ref('/commits').child(base_url).push();
 
-    newEntry.set({ time: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'), body: body });
+    newEntry.set(
+        {
+            time: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+            body: commitObject
+        }).then(function (result) {
+            var increment = firebase.database().ref('/developers').child(body.actor.username)
+            // find the developers commit count and increment it
+            firebase.database().ref('/developers').child(body.actor.username).once('value').then(function (snapshot) {
+                var count = snapshot.val() || 0;
+                firebase.database().ref('/developers').child(body.actor.username).update(count++);
+            });
+        });
+
 
     res.status(200) // respond with 200
 
